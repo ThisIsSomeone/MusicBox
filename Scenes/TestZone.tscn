@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://db0nx8mstm6pf"]
 
 [ext_resource type="PackedScene" uid="uid://cl5h7bl26mh1j" path="res://Objects/BallBouncesSplitsBetterAndPops/BetterBouncing.tscn" id="1_wgfkm"]
+[ext_resource type="PackedScene" uid="uid://dp56ukp6vtyik" path="res://Managers/ball_counter.tscn" id="2_1ftgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y60u0"]
 size = Vector2(36.75, 588)
@@ -37,3 +38,17 @@ critical_color = null
 speed = 200.0
 max_balls = 32
 launch_target = Vector2(0, 100)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2031341051]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1985976383]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BallCounter" parent="CanvasLayer/Control" unique_id=779875909 instance=ExtResource("2_1ftgw")]
+layout_mode = 0
+anchors_preset = 0

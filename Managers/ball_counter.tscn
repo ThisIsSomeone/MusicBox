@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dp56ukp6vtyik"]
+
+[ext_resource type="Script" uid="uid://c8w52kmsc6vx2" path="res://Managers/ball_counter.gd" id="1_mbeye"]
+
+[node name="BallCounter" type="Label" unique_id=779875909]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 33.0
+offset_right = -39.0
+offset_bottom = 87.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Balls: 1"
+script = ExtResource("1_mbeye")
