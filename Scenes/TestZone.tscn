@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://db0nx8mstm6pf"]
+
+[ext_resource type="PackedScene" uid="uid://32erj4vx3gue" path="res://Objects/BouncyBallTest.tscn" id="1_wgfkm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y60u0"]
+size = Vector2(36.75, 588)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyhj"]
+size = Vector2(1152, 30)
+
+[node name="TestZone" type="Node2D" unique_id=248386267]
+
+[node name="Outer Boundaries" type="StaticBody2D" parent="." unique_id=2115164010]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Outer Boundaries" unique_id=378421720]
+position = Vector2(1133.625, 324)
+shape = SubResource("RectangleShape2D_y60u0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outer Boundaries" unique_id=1531827582]
+position = Vector2(576, 15)
+shape = SubResource("RectangleShape2D_ovyhj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Outer Boundaries" unique_id=315738725]
+position = Vector2(576, 633)
+shape = SubResource("RectangleShape2D_ovyhj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Outer Boundaries" unique_id=1887185550]
+position = Vector2(18.25, 324)
+shape = SubResource("RectangleShape2D_y60u0")
+
+[node name="BouncyBallTest" parent="." unique_id=905374339 instance=ExtResource("1_wgfkm")]
+position = Vector2(540, 332)
+speed = 400.0
+max_balls = null
+launch_target = Vector2(0, 100)
