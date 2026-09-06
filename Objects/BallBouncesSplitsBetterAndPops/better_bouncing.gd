@@ -84,6 +84,7 @@ func _handle_wall_collision(collision: KinematicCollision2D) -> void:
 		_bounce_off_wall(collision)
 		_consume_bounce()
 
+
 func _bounce_off_wall(collision: KinematicCollision2D) -> void:
 	velocity = velocity.bounce(
 		collision.get_normal()
@@ -130,6 +131,7 @@ func _handle_ball_collision(
 	# Remove any overlap.
 	_separate_from_ball(other_ball, collision_normal)
 
+
 func _separate_from_ball(
 	other_ball: CharacterBody2D,
 	normal: Vector2
@@ -150,6 +152,7 @@ func _separate_from_ball(
 
 	global_position += correction
 	other_ball.global_position -= correction
+
 
 func _split_ball(collision: KinematicCollision2D) -> void:
 	var normal := collision.get_normal()
@@ -182,6 +185,9 @@ func _split_ball(collision: KinematicCollision2D) -> void:
 	global_position = spawn_pos + dir1 * child_separation
 	velocity = dir1 * speed
 	split_cooldown = split_cooldown_duration
+
+	# The wall impact costs the original ball one health.
+	_consume_bounce()
 
 	# Defer creation of the second ball so we don't modify
 	# the physics scene tree in the middle of a physics callback.
@@ -251,13 +257,15 @@ func _draw() -> void:
 			Color.RED
 		)
 
+
 func _consume_bounce() -> void:
 	health -= 1
 	_update_health_color()
 
 	if health <= 0:
 		queue_free()
-	
+
+
 func _update_health_color() -> void:
 	if starting_health <= 0:
 		modulate = critical_color
