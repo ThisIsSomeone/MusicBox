@@ -1,6 +1,9 @@
 @tool
 extends CharacterBody2D
 
+@export_category("Ball")
+@export var ball_diameter: float = 20.0
+
 @export_category("Movement")
 @export var speed: float = 400.0
 
@@ -86,21 +89,53 @@ func _handle_ball_collision(
 		_bounce_off_wall(collision)
 		return
 
-	# Calculate the collision axis from the two ball centers.
-	var center_normal := (
+	# Normal points from the other ball toward this ball.
+	var collision_normal := (
 		global_position - other_ball.global_position
 	).normalized()
 
-	if center_normal == Vector2.ZERO:
-		center_normal = collision.get_normal()
+	if collision_normal == Vector2.ZERO:
+		collision_normal = collision.get_normal()
 
-	# Reflect along the center-to-center axis.
-	velocity = velocity.bounce(center_normal).normalized() * speed
+	# Relative velocity along the collision axis.
+	var relative_velocity := velocity - other_ball.velocity
+	var velocity_along_normal := relative_velocity.dot(collision_normal)
 
-	# Separate the balls slightly so they don't remain
-	# embedded in one another.
-	global_position += center_normal * child_separation
+	# If the balls are already moving apart, don't process
+	# another collision.
+	if velocity_along_normal >= 0.0:
+		return
 
+	# Equal-mass, perfectly elastic collision.
+	#
+	# Only exchange the velocity component along the
+	# collision axis. Tangential velocity remains unchanged.
+	velocity -= velocity_along_normal * collision_normal
+	other_ball.velocity += velocity_along_normal * collision_normal
+
+	# Make sure they are no longer overlapping.
+	_separate_from_ball(other_ball, collision_normal)
+
+func _separate_from_ball(
+	other_ball: CharacterBody2D,
+	normal: Vector2
+) -> void:
+	var distance := global_position.distance_to(
+		other_ball.global_position
+	)
+
+	var minimum_distance := ball_diameter
+
+	if distance >= minimum_distance:
+		return
+
+	var overlap := minimum_distance - distance
+
+	# Split the correction equally between both balls.
+	var correction := normal * (overlap * 0.5)
+
+	global_position += correction
+	other_ball.global_position -= correction
 
 func _split_ball(collision: KinematicCollision2D) -> void:
 	var normal := collision.get_normal()
