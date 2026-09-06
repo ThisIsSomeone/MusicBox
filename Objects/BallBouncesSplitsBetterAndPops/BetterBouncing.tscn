@@ -8,7 +8,9 @@ radius = 17.0
 
 [node name="BetterBouncing" type="CharacterBody2D" unique_id=1480765369]
 script = ExtResource("1_uswgo")
-max_balls = 32
+starting_health = 4
+speed = 200.0
+max_balls = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1319180184]
 texture = ExtResource("2_65x5v")

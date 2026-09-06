@@ -31,12 +31,9 @@ shape = SubResource("RectangleShape2D_y60u0")
 
 [node name="BetterBouncing" parent="." unique_id=1480765369 instance=ExtResource("1_wgfkm")]
 position = Vector2(730, 313)
-proper_hit_speed = null
-healthy_color = null
-damaged_color = null
-critical_color = null
+starting_health = 4
 speed = 200.0
-max_balls = 32
+max_balls = 16
 launch_target = Vector2(0, 100)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2031341051]
@@ -52,3 +49,10 @@ grow_vertical = 2
 [node name="BallCounter" parent="CanvasLayer/Control" unique_id=779875909 instance=ExtResource("2_1ftgw")]
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 281.0
+offset_bottom = 54.0
+grow_horizontal = 1
