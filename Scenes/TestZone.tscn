@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db0nx8mstm6pf"]
 
-[ext_resource type="PackedScene" uid="uid://cl5h7bl26mh1j" path="res://Objects/BallBouncesSplitsBetter/BetterBouncing.tscn" id="1_wgfkm"]
+[ext_resource type="PackedScene" uid="uid://cl5h7bl26mh1j" path="res://Objects/BallBouncesSplitsBetterAndPops/BetterBouncing.tscn" id="1_wgfkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y60u0"]
 size = Vector2(36.75, 588)
@@ -30,6 +30,10 @@ shape = SubResource("RectangleShape2D_y60u0")
 
 [node name="BetterBouncing" parent="." unique_id=1480765369 instance=ExtResource("1_wgfkm")]
 position = Vector2(730, 313)
-ball_diameter = null
+proper_hit_speed = null
+healthy_color = null
+damaged_color = null
+critical_color = null
+speed = 200.0
 max_balls = 32
 launch_target = Vector2(0, 100)

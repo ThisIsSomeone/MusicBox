@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cl5h7bl26mh1j"]
 
-[ext_resource type="Script" uid="uid://cak62m1l7klsr" path="res://Objects/BallBouncesSplitsBetter/better_bouncing.gd" id="1_uswgo"]
+[ext_resource type="Script" uid="uid://cak62m1l7klsr" path="res://Objects/BallBouncesSplitsBetterAndPops/better_bouncing.gd" id="1_uswgo"]
 [ext_resource type="Texture2D" uid="uid://5rvlsvxyfiyk" path="res://Assets/Art/Bouncy Ball.png" id="2_65x5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ovyhj"]
