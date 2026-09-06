@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://32erj4vx3gue"]
 
-[ext_resource type="Script" uid="uid://cyr00u8o1o3s2" path="res://Objects/bouncy_ball_test.gd" id="1_f7o8a"]
+[ext_resource type="Script" uid="uid://cyr00u8o1o3s2" path="res://Objects/InitialBallJustBouncesAndSplits/bouncy_ball_test.gd" id="1_f7o8a"]
 [ext_resource type="Texture2D" uid="uid://5rvlsvxyfiyk" path="res://Assets/Art/Bouncy Ball.png" id="1_qe0w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ovyhj"]
