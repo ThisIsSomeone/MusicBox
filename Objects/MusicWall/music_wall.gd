@@ -134,7 +134,7 @@ func _get_total_notes() -> int:
 func handle_impact(global_hit_pos: Vector2, impact_speed: float) -> void:
 	if Engine.is_editor_hint():
 		return
-
+	
 	var local_hit: Vector2 = to_local(global_hit_pos)
 	var half_width: float = wall_size.x / 2.0
 	var ratio: float = remap(local_hit.x, -half_width, half_width, 0.0, 1.0)
@@ -145,3 +145,4 @@ func handle_impact(global_hit_pos: Vector2, impact_speed: float) -> void:
 
 	if music_manager:
 		music_manager.play_wall_hit(ratio, intensity, octave_shift, custom_scale)
+	

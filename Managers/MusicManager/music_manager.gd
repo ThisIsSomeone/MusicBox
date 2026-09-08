@@ -25,23 +25,20 @@ func play_wall_hit(
 ) -> void:
 	var scale_to_use: ScaleResource = scale_override if scale_override else active_scale
 	
-	if not scale_to_use:
-		print_orphan_nodes()
-		push_warning("MusicManager: No ScaleResource assigned!")
-		return
-		
-	if not midi_player:
-		push_warning("MusicManager: No MidiPlayer assigned!")
+	if not scale_to_use or not midi_player:
 		return
 	
 	var base_note: int = scale_to_use.get_note_for_ratio(ratio)
 	var final_note: int = clampi(base_note + (octave_shift * 12), 0, 127)
 	var velocity: int = clampi(int(intensity * 127), 30, 127)
 	
-	# Handle varying MIDI plugin method signatures
-	if midi_player.has_method("note_on"):
-		midi_player.note_on(midi_channel, final_note, velocity)
-	elif midi_player.has_method("send_note_on"):
-		midi_player.send_note_on(midi_channel, final_note, velocity)
-	elif midi_player.has_method("play_note"):
-		midi_player.play_note(final_note, velocity)
+	# Create a standard Godot MIDI InputEvent
+	var midi_event := InputEventMIDI.new()
+	midi_event.channel = midi_channel
+	midi_event.message = MIDI_MESSAGE_NOTE_ON
+	midi_event.pitch = final_note
+	midi_event.velocity = velocity
+	
+	# Send event to arlez80 MidiPlayer
+	if midi_player.has_method("receive_raw_midi_message"):
+		midi_player.receive_raw_midi_message(midi_event)
