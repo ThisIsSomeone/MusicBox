@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://duk52leo7j4gg"]
+
+[ext_resource type="PackedScene" uid="uid://ct0sj7uvlvpga" path="res://Managers/MusicManager/MusicManager.tscn" id="1_ofk86"]
+
+[node name="FirstRealTry" type="Node2D" unique_id=402539304]
+
+[node name="MusicManager" parent="." unique_id=423612358 instance=ExtResource("1_ofk86")]
