@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
 [ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
 [ext_resource type="PackedScene" uid="uid://d1ggbar1sq5uj" path="res://Objects/BouncingMusicBalls/BouncingMusicBalls.tscn" id="5_7qgno"]
+[ext_resource type="Resource" uid="uid://cx0hd74khdnys" path="res://Resources/MinorBlues.tres" id="5_roa2i"]
+[ext_resource type="PackedScene" uid="uid://dp56ukp6vtyik" path="res://Managers/ball_counter.tscn" id="6_3yktn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
 size = Vector2(1040, 50)
@@ -23,6 +25,8 @@ size = Vector2(548, 54)
 [node name="MusicManager" parent="." unique_id=423612358 node_paths=PackedStringArray("midi_player") instance=ExtResource("1_ofk86")]
 midi_player = NodePath("../MidiPlayer")
 active_scale = ExtResource("2_mdaok")
+min_note_duration = 2.0
+max_note_duration = 3.0
 
 [node name="MidiPlayer" type="Node" parent="." unique_id=1535339629]
 script = ExtResource("2_t5meq")
@@ -37,7 +41,7 @@ script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
 music_manager = NodePath("../MusicManager")
 octave_shift = 1
-custom_scale = ExtResource("2_mdaok")
+custom_scale = ExtResource("5_roa2i")
 
 [node name="Visuals" type="ColorRect" parent="TopWall" unique_id=1301031704]
 show_behind_parent = true
@@ -56,7 +60,7 @@ script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
 music_manager = NodePath("../MusicManager")
 octave_shift = -1
-custom_scale = ExtResource("2_mdaok")
+custom_scale = ExtResource("5_roa2i")
 
 [node name="Visuals" type="ColorRect" parent="BottomWall" unique_id=2090999868]
 show_behind_parent = true
@@ -75,7 +79,7 @@ rotation = 1.5707964
 script = ExtResource("4_ynop4")
 wall_size = Vector2(548, 54)
 music_manager = NodePath("../MusicManager")
-custom_scale = ExtResource("2_mdaok")
+custom_scale = ExtResource("5_roa2i")
 
 [node name="Visuals" type="ColorRect" parent="LeftWall" unique_id=176237392]
 show_behind_parent = true
@@ -94,7 +98,7 @@ rotation = 1.5707964
 script = ExtResource("4_ynop4")
 wall_size = Vector2(548, 54)
 music_manager = NodePath("../MusicManager")
-custom_scale = ExtResource("2_mdaok")
+custom_scale = ExtResource("5_roa2i")
 
 [node name="Visuals" type="ColorRect" parent="RightWall" unique_id=1349252843]
 show_behind_parent = true
@@ -108,3 +112,26 @@ color = Color(0, 1, 1, 1)
 shape = SubResource("RectangleShape2D_3yktn")
 
 [node name="MusicBalls" parent="." unique_id=1480765369 instance=ExtResource("5_7qgno")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=664718611]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=831492466]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BallCounter" parent="CanvasLayer/Control" unique_id=779875909 instance=ExtResource("6_3yktn")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 281.0
+offset_bottom = 54.0
+grow_horizontal = 1
+metadata/_edit_use_anchors_ = true

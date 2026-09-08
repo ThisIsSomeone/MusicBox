@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MusicBox"
-run/main_scene="uid://db0nx8mstm6pf"
+run/main_scene="uid://duk52leo7j4gg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,7 @@ window/stretch/aspect="expand"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Meowstermind/Documents/music-box/Example.avi"
+movie_writer/movie_file="C:/Users/Meowstermind/Documents/MusicBox/Movies/LetsGetJazz.avi"
 
 [editor_plugins]
 
