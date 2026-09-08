@@ -11,6 +11,12 @@ size = Vector2(1040, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynop4"]
 size = Vector2(1040, 50)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qgno"]
+size = Vector2(548, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yktn"]
+size = Vector2(548, 54)
+
 [node name="FirstRealTry" type="Node2D" unique_id=402539304]
 
 [node name="MusicManager" parent="." unique_id=423612358 node_paths=PackedStringArray("midi_player") instance=ExtResource("1_ofk86")]
@@ -24,10 +30,13 @@ metadata/_custom_type_script = "uid://bf1vnufu7na6x"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1198214841]
 
-[node name="TopWall" type="StaticBody2D" parent="." unique_id=932287449]
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=932287449 node_paths=PackedStringArray("music_manager")]
 position = Vector2(0, -299)
 script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
+music_manager = NodePath("../MusicManager")
+octave_shift = 1
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="TopWall" unique_id=1301031704]
 offset_left = -520.0
@@ -39,10 +48,13 @@ color = Color(0, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=690741847]
 shape = SubResource("RectangleShape2D_ctfe1")
 
-[node name="BottomWall" type="StaticBody2D" parent="." unique_id=1824348569]
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=1824348569 node_paths=PackedStringArray("music_manager")]
 position = Vector2(0, 299)
 script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
+music_manager = NodePath("../MusicManager")
+octave_shift = -1
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="BottomWall" unique_id=2090999868]
 offset_left = -520.0
@@ -53,3 +65,39 @@ color = Color(0, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=1860343069]
 shape = SubResource("RectangleShape2D_ynop4")
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=1736848127 node_paths=PackedStringArray("music_manager")]
+position = Vector2(-547, 0)
+rotation = 1.5707964
+script = ExtResource("4_ynop4")
+wall_size = Vector2(548, 54)
+music_manager = NodePath("../MusicManager")
+custom_scale = ExtResource("2_mdaok")
+
+[node name="Visuals" type="ColorRect" parent="LeftWall" unique_id=176237392]
+offset_left = -274.0
+offset_top = -27.0
+offset_right = 274.0
+offset_bottom = 27.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1700605624]
+shape = SubResource("RectangleShape2D_7qgno")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=1523013576 node_paths=PackedStringArray("music_manager")]
+position = Vector2(547, 0)
+rotation = 1.5707964
+script = ExtResource("4_ynop4")
+wall_size = Vector2(548, 54)
+music_manager = NodePath("../MusicManager")
+custom_scale = ExtResource("2_mdaok")
+
+[node name="Visuals" type="ColorRect" parent="RightWall" unique_id=1349252843]
+offset_left = -274.0
+offset_top = -27.0
+offset_right = 274.0
+offset_bottom = 27.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=883402737]
+shape = SubResource("RectangleShape2D_3yktn")
