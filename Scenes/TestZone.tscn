@@ -31,9 +31,6 @@ shape = SubResource("RectangleShape2D_y60u0")
 
 [node name="BetterBouncing" parent="." unique_id=1480765369 instance=ExtResource("1_wgfkm")]
 position = Vector2(730, 313)
-starting_health = 4
-speed = 200.0
-max_balls = 16
 launch_target = Vector2(0, 100)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2031341051]

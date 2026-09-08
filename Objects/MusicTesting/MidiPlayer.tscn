@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://s3hb3eoms7nm"]
+
+[ext_resource type="Script" uid="uid://bitwu3ncy2qu" path="res://Objects/MusicTesting/midi_player.gd" id="1_vecv1"]
+
+[node name="MidiPlayer" type="Node" unique_id=1511774821]
+script = ExtResource("1_vecv1")
+soundfont = "res://SoundFonts/GeneralUser GS v1.471.sf2"
+metadata/_custom_type_script = "uid://bf1vnufu7na6x"
