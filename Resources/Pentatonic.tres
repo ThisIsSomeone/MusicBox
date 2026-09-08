@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://bbdu0qcsurre2"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_mbi2b"]
+
+[resource]
+script = ExtResource("1_mbi2b")
+program_number = 11
+metadata/_custom_type_script = "uid://dp1tm4dqne125"

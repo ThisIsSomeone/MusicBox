@@ -1,7 +1,55 @@
 [gd_scene format=3 uid="uid://duk52leo7j4gg"]
 
 [ext_resource type="PackedScene" uid="uid://ct0sj7uvlvpga" path="res://Managers/MusicManager/MusicManager.tscn" id="1_ofk86"]
+[ext_resource type="Resource" uid="uid://bbdu0qcsurre2" path="res://Resources/Pentatonic.tres" id="2_mdaok"]
+[ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
+[ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
+size = Vector2(1040, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynop4"]
+size = Vector2(1040, 50)
 
 [node name="FirstRealTry" type="Node2D" unique_id=402539304]
 
-[node name="MusicManager" parent="." unique_id=423612358 instance=ExtResource("1_ofk86")]
+[node name="MusicManager" parent="." unique_id=423612358 node_paths=PackedStringArray("midi_player") instance=ExtResource("1_ofk86")]
+midi_player = NodePath("../MidiPlayer")
+active_scale = ExtResource("2_mdaok")
+
+[node name="MidiPlayer" type="Node" parent="." unique_id=1535339629]
+script = ExtResource("2_t5meq")
+soundfont = "res://SoundFonts/GeneralUser GS v1.471.sf2"
+metadata/_custom_type_script = "uid://bf1vnufu7na6x"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1198214841]
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=932287449]
+position = Vector2(0, -299)
+script = ExtResource("4_ynop4")
+wall_size = Vector2(1040, 50)
+
+[node name="Visuals" type="ColorRect" parent="TopWall" unique_id=1301031704]
+offset_left = -520.0
+offset_top = -25.0
+offset_right = 520.0
+offset_bottom = 25.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=690741847]
+shape = SubResource("RectangleShape2D_ctfe1")
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=1824348569]
+position = Vector2(0, 299)
+script = ExtResource("4_ynop4")
+wall_size = Vector2(1040, 50)
+
+[node name="Visuals" type="ColorRect" parent="BottomWall" unique_id=2090999868]
+offset_left = -520.0
+offset_top = -25.0
+offset_right = 520.0
+offset_bottom = 25.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=1860343069]
+shape = SubResource("RectangleShape2D_ynop4")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d1ggbar1sq5uj"]
+
+[ext_resource type="Script" uid="uid://bubybx0qqdw0m" path="res://Objects/BouncingMusicBalls/bouncing_music_balls.gd" id="1_7h6mm"]
+[ext_resource type="Texture2D" uid="uid://5rvlsvxyfiyk" path="res://Assets/Art/Bouncy Ball.png" id="2_vblya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ovyhj"]
+radius = 17.0
+
+[node name="MusicBalls" type="CharacterBody2D" unique_id=1480765369]
+script = ExtResource("1_7h6mm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1319180184]
+texture = ExtResource("2_vblya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=464289535]
+shape = SubResource("CircleShape2D_ovyhj")

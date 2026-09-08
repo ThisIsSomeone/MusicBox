@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://cx0hd74khdnys"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_u0fmd"]
+
+[resource]
+script = ExtResource("1_u0fmd")
+scale_name = "Minor Blues"
+root_note = 48
+scale_intervals = Array[int]([0, 3, 5, 6, 7, 10])
+metadata/_custom_type_script = "uid://dp1tm4dqne125"
