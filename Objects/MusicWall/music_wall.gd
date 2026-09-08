@@ -131,10 +131,15 @@ func _get_total_notes() -> int:
 		return scale.scale_intervals.size() * scale.octaves
 	return 8  # Default preview fallback (8 segments)
 
-func handle_impact(global_hit_pos: Vector2, impact_speed: float) -> void:
+func handle_impact(global_hit_pos: Vector2, impact_speed: float, ball: CharacterBody2D = null) -> void:
 	if Engine.is_editor_hint():
 		return
-	
+
+	var health_ratio: float = 1.0
+	if ball and "health" in ball and "starting_health" in ball:
+		if ball.starting_health > 0:
+			health_ratio = float(ball.health) / float(ball.starting_health)
+
 	var local_hit: Vector2 = to_local(global_hit_pos)
 	var half_width: float = wall_size.x / 2.0
 	var ratio: float = remap(local_hit.x, -half_width, half_width, 0.0, 1.0)
@@ -144,5 +149,10 @@ func handle_impact(global_hit_pos: Vector2, impact_speed: float) -> void:
 	wall_hit.emit(ratio, intensity)
 
 	if music_manager:
-		music_manager.play_wall_hit(ratio, intensity, octave_shift, custom_scale)
-	
+		music_manager.play_wall_hit(
+			ratio, 
+			intensity, 
+			octave_shift, 
+			custom_scale, 
+			health_ratio
+		)

@@ -78,11 +78,11 @@ func _update_split_cooldown(delta: float) -> void:
 func _handle_wall_collision(collision: KinematicCollision2D) -> void:
 	var collider := collision.get_collider()
 
-	# Trigger MIDI note & wall flash
 	if collider is MusicWall:
 		collider.handle_impact(
 			collision.get_position(),
-			velocity.length()
+			velocity.length(),
+			self # Pass the ball reference
 		)
 
 	var total_balls := get_tree().get_nodes_in_group("balls").size()

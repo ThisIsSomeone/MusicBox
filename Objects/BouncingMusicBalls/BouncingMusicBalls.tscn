@@ -8,6 +8,8 @@ radius = 17.0
 
 [node name="MusicBalls" type="CharacterBody2D" unique_id=1480765369]
 script = ExtResource("1_7h6mm")
+starting_health = 8
+max_balls = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1319180184]
 texture = ExtResource("2_vblya")
