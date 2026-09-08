@@ -59,6 +59,9 @@ func _update_wall_dimensions() -> void:
 
 	queue_redraw()
 
+# Add this near the top of music_wall.gd with your other variables
+var active_segment_flashes: Dictionary = {} # segment_index: int -> alpha: float
+
 func _draw() -> void:
 	if not show_segments:
 		return
@@ -73,13 +76,19 @@ func _draw() -> void:
 
 	for i in range(total_notes):
 		var x_start: float = -half_w + (i * step_w)
+		var segment_rect := Rect2(Vector2(x_start, -half_h), Vector2(step_w, wall_size.y))
 
-		# Draw subtle alternating stripes for adjacent notes
+		# 1. Subtle alternating stripes for adjacent notes
 		if i % 2 == 1:
-			var stripe_rect := Rect2(Vector2(x_start, -half_h), Vector2(step_w, wall_size.y))
-			draw_rect(stripe_rect, Color(0, 0, 0, 0.12))
+			draw_rect(segment_rect, Color(0, 0, 0, 0.12))
 
-		# Draw vertical note divider lines
+		# 2. Flash highlight ONLY on this hit segment
+		if active_segment_flashes.has(i) and active_segment_flashes[i] > 0.0:
+			var flash_overlay: Color = flash_color
+			flash_overlay.a *= active_segment_flashes[i] # Fade out with tween
+			draw_rect(segment_rect, flash_overlay)
+
+		# 3. Vertical divider lines
 		if i > 0:
 			draw_line(
 				Vector2(x_start, -half_h),
@@ -87,6 +96,31 @@ func _draw() -> void:
 				Color(0, 0, 0, 0.4),
 				1.5
 			)
+
+func _on_wall_hit(ratio: float, _intensity: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
+	var total_notes: int = _get_total_notes()
+	if total_notes <= 0:
+		return
+
+	# Calculate exact segment index that was struck (0 to total_notes - 1)
+	var seg_index: int = clampi(int(ratio * total_notes), 0, total_notes - 1)
+
+	# Tween alpha of ONLY this specific segment from 1.0 back down to 0.0
+	var tween := create_tween()
+	active_segment_flashes[seg_index] = 1.0
+	queue_redraw()
+
+	tween.tween_method(
+		func(alpha: float) -> void:
+			active_segment_flashes[seg_index] = alpha
+			queue_redraw(),
+		1.0,
+		0.0,
+		0.18
+	)
 
 func _get_total_notes() -> int:
 	var scale: ScaleResource = custom_scale
@@ -111,9 +145,3 @@ func handle_impact(global_hit_pos: Vector2, impact_speed: float) -> void:
 
 	if music_manager:
 		music_manager.play_wall_hit(ratio, intensity, octave_shift, custom_scale)
-
-func _on_wall_hit(_ratio: float, _intensity: float) -> void:
-	if visual and not Engine.is_editor_hint():
-		var tween: Tween = create_tween()
-		visual.color = flash_color
-		tween.tween_property(visual, "color", base_color, 0.15)

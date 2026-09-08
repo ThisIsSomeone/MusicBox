@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bbdu0qcsurre2" path="res://Resources/Pentatonic.tres" id="2_mdaok"]
 [ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
 [ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
+[ext_resource type="PackedScene" uid="uid://d1ggbar1sq5uj" path="res://Objects/BouncingMusicBalls/BouncingMusicBalls.tscn" id="5_7qgno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
 size = Vector2(1040, 50)
@@ -39,6 +40,7 @@ octave_shift = 1
 custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="TopWall" unique_id=1301031704]
+show_behind_parent = true
 offset_left = -520.0
 offset_top = -25.0
 offset_right = 520.0
@@ -57,6 +59,7 @@ octave_shift = -1
 custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="BottomWall" unique_id=2090999868]
+show_behind_parent = true
 offset_left = -520.0
 offset_top = -25.0
 offset_right = 520.0
@@ -75,6 +78,7 @@ music_manager = NodePath("../MusicManager")
 custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="LeftWall" unique_id=176237392]
+show_behind_parent = true
 offset_left = -274.0
 offset_top = -27.0
 offset_right = 274.0
@@ -93,6 +97,7 @@ music_manager = NodePath("../MusicManager")
 custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="RightWall" unique_id=1349252843]
+show_behind_parent = true
 offset_left = -274.0
 offset_top = -27.0
 offset_right = 274.0
@@ -101,3 +106,5 @@ color = Color(0, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=883402737]
 shape = SubResource("RectangleShape2D_3yktn")
+
+[node name="MusicBalls" parent="." unique_id=1480765369 instance=ExtResource("5_7qgno")]
