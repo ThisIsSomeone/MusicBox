@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://dn4u23ie42qld"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_gvr3d"]
+
+[resource]
+script = ExtResource("1_gvr3d")
+scale_name = "Messiaen’s Mode 2"
+scale_intervals = Array[int]([0, 1, 3, 4, 6, 7, 9, 10])
+program_number = 10
+metadata/_custom_type_script = "uid://dp1tm4dqne125"
