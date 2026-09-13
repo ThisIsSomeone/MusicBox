@@ -24,6 +24,13 @@ extends Node
 ## Time window (in seconds) to collect hits per wall (0.016s ≈ 1 physics frame at 60Hz)
 @export var wall_batch_window: float = 0.016
 
+## Strategy 4 / Health Softening: Scales note volume (velocity) based on ball health
+@export var enable_health_velocity_scaling: bool = true
+@export_range(1, 127) var min_health_velocity: int = 25
+@export_range(1, 127) var max_health_velocity: int = 127
+## Curve exponent: 2.0 compensates for logarithmic audio perception so volume drops perceptually linearly
+@export var health_loudness_curve: float = 2.0
+
 @export_group("Health Sound Options")
 @export var shorten_notes_by_health: bool = true
 ## Reduces note volume as health drops so short notes don't choke loudly
@@ -31,13 +38,6 @@ extends Node
 ## Minimum note length in seconds (keep above ~0.12s so the note attack finishes naturally)
 @export var min_note_duration: float = 0.12
 @export var max_note_duration: float = 0.5
-
-## Strategy 4 / Health Softening: Scales note velocity based on ball health
-@export var enable_health_velocity_scaling: bool = true
-@export_range(1, 127) var min_health_velocity: int = 25
-@export_range(1, 127) var max_health_velocity: int = 127
-## Curve exponent: 2.0 compensates for logarithmic audio perception so volume drops perceptually linearly
-@export var health_loudness_curve: float = 2.0
 
 ## Other variables
 var current_program: int = -1
