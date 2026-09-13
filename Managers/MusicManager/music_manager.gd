@@ -32,6 +32,13 @@ extends Node
 @export var min_note_duration: float = 0.12
 @export var max_note_duration: float = 0.5
 
+## Strategy 4 / Health Softening: Scales note velocity based on ball health
+@export var enable_health_velocity_scaling: bool = true
+@export_range(1, 127) var min_health_velocity: int = 25
+@export_range(1, 127) var max_health_velocity: int = 127
+## Curve exponent: 2.0 compensates for logarithmic audio perception so volume drops perceptually linearly
+@export var health_loudness_curve: float = 2.0
+
 ## Other variables
 var current_program: int = -1
 var _recent_note_times: Array[float] = []
@@ -108,12 +115,15 @@ func _execute_wall_hit(
 		apply_scale(scale_override)
 	
 	var clamped_health: float = clampf(health_ratio, 0.0, 1.0)
+	var velocity: int = max_health_velocity
 	
-	var adjusted_intensity: float = intensity
-	if soften_notes_by_health:
-		adjusted_intensity *= lerp(0.35, 1.0, clamped_health)
-		
-	var velocity: int = clampi(int(adjusted_intensity * 127), 25, 127)
+	if enable_health_velocity_scaling:
+		# Power curve pow(health, 2.0) converts linear health into a perceptually linear dB/volume scale
+		var perceived_loudness: float = pow(clamped_health, health_loudness_curve)
+		var base_velocity: float = lerp(float(min_health_velocity), float(max_health_velocity), perceived_loudness)
+		velocity = clampi(int(base_velocity * intensity), min_health_velocity, max_health_velocity)
+	else:
+		velocity = clampi(int(intensity * max_health_velocity), min_health_velocity, max_health_velocity)
 	
 	var note_on_event := InputEventMIDI.new()
 	note_on_event.channel = midi_channel
