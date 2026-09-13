@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
 [ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
 [ext_resource type="PackedScene" uid="uid://d1ggbar1sq5uj" path="res://Objects/BouncingMusicBalls/BouncingMusicBalls.tscn" id="5_7qgno"]
-[ext_resource type="Resource" uid="uid://b5oqtme3d0svs" path="res://Resources/Akebono.tres" id="5_roa2i"]
 [ext_resource type="PackedScene" uid="uid://dp56ukp6vtyik" path="res://Managers/ball_counter.tscn" id="6_3yktn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
@@ -25,6 +24,11 @@ size = Vector2(548, 54)
 [node name="MusicManager" parent="." unique_id=423612358 node_paths=PackedStringArray("midi_player") instance=ExtResource("1_ofk86")]
 midi_player = NodePath("../MidiPlayer")
 active_scale = ExtResource("2_mdaok")
+enable_rate_limiting = false
+enable_pitch_cooldown = false
+enable_wall_representative_note = false
+shorten_notes_by_health = false
+soften_notes_by_health = false
 min_note_duration = 2.0
 max_note_duration = 3.0
 
@@ -41,7 +45,7 @@ script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
 music_manager = NodePath("../MusicManager")
 octave_shift = 1
-custom_scale = ExtResource("5_roa2i")
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="TopWall" unique_id=1301031704]
 show_behind_parent = true
@@ -60,7 +64,7 @@ script = ExtResource("4_ynop4")
 wall_size = Vector2(1040, 50)
 music_manager = NodePath("../MusicManager")
 octave_shift = -1
-custom_scale = ExtResource("5_roa2i")
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="BottomWall" unique_id=2090999868]
 show_behind_parent = true
@@ -79,7 +83,7 @@ rotation = 1.5707964
 script = ExtResource("4_ynop4")
 wall_size = Vector2(548, 54)
 music_manager = NodePath("../MusicManager")
-custom_scale = ExtResource("5_roa2i")
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="LeftWall" unique_id=176237392]
 show_behind_parent = true
@@ -98,7 +102,7 @@ rotation = 1.5707964
 script = ExtResource("4_ynop4")
 wall_size = Vector2(548, 54)
 music_manager = NodePath("../MusicManager")
-custom_scale = ExtResource("5_roa2i")
+custom_scale = ExtResource("2_mdaok")
 
 [node name="Visuals" type="ColorRect" parent="RightWall" unique_id=1349252843]
 show_behind_parent = true
