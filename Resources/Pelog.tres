@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://07oc8it1omke"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_wabfu"]
+
+[resource]
+script = ExtResource("1_wabfu")
+scale_name = "Pelog"
+root_note = 52
+scale_intervals = Array[int]([0, 1, 3, 7, 8])
+octaves = 3
+program_number = 12
+metadata/_custom_type_script = "uid://dp1tm4dqne125"

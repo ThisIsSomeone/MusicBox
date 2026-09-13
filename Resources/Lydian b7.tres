@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://jvgkrqabug72"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_s6sgo"]
+
+[resource]
+script = ExtResource("1_s6sgo")
+scale_name = "Lydian b7"
+root_note = 53
+scale_intervals = Array[int]([0, 2, 4, 6, 7, 9, 10])
+octaves = 3
+program_number = 24
+metadata/_custom_type_script = "uid://dp1tm4dqne125"

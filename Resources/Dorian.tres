@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://r1lx6bu62ex2"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_y0siy"]
+
+[resource]
+script = ExtResource("1_y0siy")
+scale_name = "Dorian b2"
+root_note = 50
+scale_intervals = Array[int]([0, 1, 3, 5, 7, 9, 10])
+octaves = 3
+program_number = 71
+metadata/_custom_type_script = "uid://dp1tm4dqne125"
