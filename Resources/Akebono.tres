@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://b5oqtme3d0svs"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_sovjw"]
+
+[resource]
+script = ExtResource("1_sovjw")
+scale_name = "Akebono"
+root_note = 57
+scale_intervals = Array[int]([0, 2, 3, 7, 8])
+octaves = 3
+program_number = 46
+metadata/_custom_type_script = "uid://dp1tm4dqne125"

@@ -13,17 +13,35 @@ extends Node
 @export var min_note_duration: float = 0.12
 @export var max_note_duration: float = 0.5
 
+var current_program: int = -1
+
 func _ready() -> void:
+	if midi_player and not midi_player.is_node_ready():
+		await midi_player.ready
+
 	if active_scale:
 		apply_scale(active_scale)
 
 func apply_scale(new_scale: ScaleResource) -> void:
 	active_scale = new_scale
-	if midi_player:
-		if midi_player.has_method("program_change"):
-			midi_player.program_change(midi_channel, active_scale.program_number)
-		elif midi_player.has_method("send_program_change"):
-			midi_player.send_program_change(midi_channel, active_scale.program_number)
+	if not active_scale or not midi_player:
+		return
+		
+	# Convert 1-based GM program numbers (1-128) to 0-based MIDI range (0-127)
+	var prog: int = clampi(active_scale.program_number - 1, 0, 127)
+	
+	if prog == current_program:
+		return
+		
+	current_program = prog
+	
+	var change_event := InputEventMIDI.new()
+	change_event.channel = midi_channel
+	change_event.message = MIDI_MESSAGE_PROGRAM_CHANGE
+	change_event.instrument = prog # arlez80's MidiPlayer checks 'instrument'
+	
+	if midi_player.has_method("receive_raw_midi_message"):
+		midi_player.receive_raw_midi_message(change_event)
 
 func play_wall_hit(
 	ratio: float, 
@@ -36,6 +54,9 @@ func play_wall_hit(
 	
 	if not scale_to_use or not midi_player:
 		return
+		
+	if scale_override and scale_override != active_scale:
+		apply_scale(scale_override)
 	
 	var clamped_health: float = clampf(health_ratio, 0.0, 1.0)
 	var base_note: int = scale_to_use.get_note_for_ratio(ratio)
