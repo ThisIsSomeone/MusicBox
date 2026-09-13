@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScaleResource" format=3 uid="uid://bg40ubaan1qkd"]
+
+[ext_resource type="Script" uid="uid://dp1tm4dqne125" path="res://Resources/ScaleResource.gd" id="1_nfvel"]
+
+[resource]
+script = ExtResource("1_nfvel")
+scale_name = "Prometheus"
+scale_intervals = Array[int]([0, 2, 4, 6, 9])
+program_number = 88
+metadata/_custom_type_script = "uid://dp1tm4dqne125"
