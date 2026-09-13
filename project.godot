@@ -12,7 +12,7 @@ config_version=5
 
 config/name="MusicBox"
 run/main_scene="uid://duk52leo7j4gg"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]

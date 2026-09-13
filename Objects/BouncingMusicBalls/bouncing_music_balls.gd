@@ -206,8 +206,6 @@ func _spawn_split_child(
 	spawn_position: Vector2,
 	direction: Vector2
 ) -> void:
-	# Check again because other balls may have split before
-	# this deferred call executes.
 	var total_balls := get_tree().get_nodes_in_group("balls").size()
 
 	if total_balls >= max_balls:
@@ -227,6 +225,10 @@ func _spawn_split_child(
 		push_error("Ball scene root must be CharacterBody2D.")
 		return
 
+	# Copy inspector properties BEFORE adding to tree so _ready() uses updated settings
+	if new_ball.has_method("copy_settings_from"):
+		new_ball.copy_settings_from(self)
+
 	get_parent().add_child(new_ball)
 
 	new_ball.global_position = spawn_position
@@ -241,7 +243,6 @@ func _spawn_split_child(
 	# colliding with one another.
 	add_collision_exception_with(new_ball)
 	new_ball.add_collision_exception_with(self)
-
 
 func set_split_cooldown(value: float) -> void:
 	split_cooldown = value
@@ -290,3 +291,18 @@ func _update_health_color() -> void:
 		# Damaged → critical
 		var t := inverse_lerp(0.5, 0.0, health_ratio)
 		modulate = damaged_color.lerp(critical_color, t)
+
+func copy_settings_from(other: CharacterBody2D) -> void:
+	ball_diameter = other.ball_diameter
+	starting_health = other.starting_health
+	proper_hit_speed = other.proper_hit_speed
+	healthy_color = other.healthy_color
+	damaged_color = other.damaged_color
+	critical_color = other.critical_color
+	speed = other.speed
+	max_balls = other.max_balls
+	split_angle = other.split_angle
+	split_cooldown_duration = other.split_cooldown_duration
+	wall_separation = other.wall_separation
+	child_separation = other.child_separation
+	launch_target = other.launch_target
