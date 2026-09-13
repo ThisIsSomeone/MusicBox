@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
 [ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
 [ext_resource type="PackedScene" uid="uid://d1ggbar1sq5uj" path="res://Objects/BouncingMusicBalls/BouncingMusicBalls.tscn" id="5_7qgno"]
-[ext_resource type="Resource" uid="uid://bg40ubaan1qkd" path="res://Resources/Prometheus.tres" id="5_roa2i"]
+[ext_resource type="Resource" uid="uid://b5oqtme3d0svs" path="res://Resources/Akebono.tres" id="5_roa2i"]
 [ext_resource type="PackedScene" uid="uid://dp56ukp6vtyik" path="res://Managers/ball_counter.tscn" id="6_3yktn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
