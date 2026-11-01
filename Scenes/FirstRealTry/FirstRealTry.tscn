@@ -5,7 +5,10 @@
 [ext_resource type="Script" uid="uid://bf1vnufu7na6x" path="res://addons/midi/MidiPlayer.gd" id="2_t5meq"]
 [ext_resource type="Script" uid="uid://38flt38mkndy" path="res://Objects/MusicWall/music_wall.gd" id="4_ynop4"]
 [ext_resource type="PackedScene" uid="uid://d1ggbar1sq5uj" path="res://Objects/BouncingMusicBalls/BouncingMusicBalls.tscn" id="5_7qgno"]
+<<<<<<< HEAD
 [ext_resource type="Resource" uid="uid://cx0hd74khdnys" path="res://Resources/MinorBlues.tres" id="5_roa2i"]
+=======
+>>>>>>> 4eb3341aac2799403a8b62fe953f383f91f7bbbf
 [ext_resource type="PackedScene" uid="uid://dp56ukp6vtyik" path="res://Managers/ball_counter.tscn" id="6_3yktn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfe1"]
@@ -25,11 +28,21 @@ size = Vector2(548, 54)
 [node name="MusicManager" parent="." unique_id=423612358 node_paths=PackedStringArray("midi_player") instance=ExtResource("1_ofk86")]
 midi_player = NodePath("../MidiPlayer")
 active_scale = ExtResource("2_mdaok")
+<<<<<<< HEAD
 thinning_window = 2.0
 pitch_cooldown_duration = 3.0
 wall_batch_window = 0.2
 min_note_duration = 1.0
 max_note_duration = 2.0
+=======
+enable_rate_limiting = false
+enable_pitch_cooldown = false
+enable_wall_representative_note = false
+shorten_notes_by_health = false
+soften_notes_by_health = false
+min_note_duration = 2.0
+max_note_duration = 3.0
+>>>>>>> 4eb3341aac2799403a8b62fe953f383f91f7bbbf
 
 [node name="MidiPlayer" type="Node" parent="." unique_id=1535339629]
 script = ExtResource("2_t5meq")
@@ -115,10 +128,13 @@ color = Color(0, 1, 1, 1)
 shape = SubResource("RectangleShape2D_3yktn")
 
 [node name="MusicBalls" parent="." unique_id=1480765369 instance=ExtResource("5_7qgno")]
+<<<<<<< HEAD
 position = Vector2(-197, -86)
 starting_health = 120
 max_balls = 120
 launch_target = Vector2(0, -100)
+=======
+>>>>>>> 4eb3341aac2799403a8b62fe953f383f91f7bbbf
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=664718611]
 
