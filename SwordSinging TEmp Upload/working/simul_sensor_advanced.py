@@ -20,11 +20,11 @@ angle_x = 0.0   # Pitch
 angle_y = 0.0   # Roll
 angle_z = 0.0   # Yaw
 
-gyro_x = 0.0
-gyro_y = 0.0
-gyro_z = 0.0
+gyro_x = 0.0    # Rotation speed X
+gyro_y = 0.0    # Rotation speed Y
+gyro_z = 0.0    # Rotation speed Z
 
-print("=== Full Sensor Matrix Simulator ===")
+print("=== Full Sensor Matrix Simulator (Accel + Angle + Gyro) ===")
 print("Controls:")
 print("  [Space]       : Toggle Active / Still mode (Movement Trigger)")
 print("  [W / S]       : Accel Z +/- (Thrust / Lift)")
@@ -33,6 +33,9 @@ print("  [Q / E]       : Accel Y +/- (Forward / Backward)")
 print("  [I / K]       : Angle X (Pitch) +/-")
 print("  [J / L]       : Angle Y (Roll) +/-")
 print("  [U / O]       : Angle Z (Yaw) +/-")
+print("  [R / F]       : Gyro X (Rotational Speed) +/-")
+print("  [T / G]       : Gyro Y (Rotational Speed) +/-")
+print("  [Y / H]       : Gyro Z (Rotational Speed) +/-")
 print("  [ESC]         : Exit simulator\n")
 print("Streaming full telemetry matrix to port 7001...\n")
 
@@ -70,9 +73,26 @@ try:
                 angle_z = (angle_z + 15.0) % 360.0
             elif key == 'o':
                 angle_z = (angle_z - 15.0) % 360.0
+            elif key == 'r':
+                gyro_x += 50.0
+            elif key == 'f':
+                gyro_x -= 50.0
+            elif key == 't':
+                gyro_y += 50.0
+            elif key == 'g':
+                gyro_y -= 50.0
+            elif key == 'y':
+                gyro_z += 50.0
+            elif key == 'h':
+                gyro_z -= 50.0
 
         # Enforce baseline gravity if not in active manual override
         target_accel_z = accel_z if is_active_mode else 9.81
+
+        # Automatically decay gyro values back toward zero if keys aren't actively held
+        gyro_x *= 0.85
+        gyro_y *= 0.85
+        gyro_z *= 0.85
 
         # Construct complete DFRobot SEN0386 payload structure
         sensor_data = {
@@ -85,12 +105,13 @@ try:
         message = json.dumps(sensor_data)
         client_socket.sendto(message.encode('utf-8'), (TARGET_IP, TARGET_PORT))
 
-        # Live telemetry console dashboard
+        # Live telemetry console dashboard showing full X, Y, Z for all matrices
         status_str = "ACTIVE" if is_active_mode else "STILL "
         print(
             f"[{status_str}] "
-            f"Acc[X:{accel_x:4.1f}, Y:{accel_y:4.1f}, Z:{target_accel_z:5.1f}] | "
-            f"Ang[X:{angle_x:5.1f}, Y:{angle_y:5.1f}, Z:{angle_z:5.1f}]",
+            f"Acc[X:{accel_x:4.1f}, Y:{accel_y:4.1f}, Z:{target_accel_z:4.1f}] | "
+            f"Ang[X:{angle_x:5.1f}, Y:{angle_y:5.1f}, Z:{angle_z:5.1f}] | "
+            f"Gyr[X:{gyro_x:5.1f}, Y:{gyro_y:5.1f}, Z:{gyro_z:5.1f}]",
             end='\r'
         )
         
